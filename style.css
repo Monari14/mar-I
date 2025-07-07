@@ -1,0 +1,215 @@
+/* Use a CSS reset for consistency across browsers */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif; /* Fallbacks for better compatibility */
+  background-color: #121212; /* Slightly lighter dark for better contrast */
+  color: #e0e0e0; /* Softer white for readability */
+  overflow-x: hidden;
+  line-height: 1.5; /* Improved readability */
+}
+
+/* Use CSS custom properties for consistent theming */
+:root {
+  --primary-color: #f55; /* Vibrant accent color */
+  --primary-hover: #ff7878; /* Lighter hover variant */
+  --background-dark: #1c1c1c; /* Dark background */
+  --border-radius: 12px; /* Consistent border-radius */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Softer shadow */
+  --transition: 0.3s ease;
+}
+
+.container {
+  text-align: center;
+  padding: clamp(1rem, 5vw, 2rem); /* Responsive padding */
+  max-width: 1200px; /* Limit max-width for larger screens */
+  margin: 0 auto; /* Center content */
+}
+
+.music-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem; /* Slightly larger gap for breathing room */
+  margin-bottom: 1.5rem;
+}
+
+.cover {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--border-radius);
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+
+/* Audio player */
+.audio-player {
+  margin: 1.5rem auto 2.5rem;
+  max-width: 400px;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border-radius: var(--border-radius);
+  box-shadow: none;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: none;
+}
+
+.audio-player::after,
+.audio-player::before {
+  content: none;
+}
+
+.audio-player:focus-within, .audio-player:hover {
+  box-shadow: none;
+  border: none;
+  transform: none;
+}
+
+.audio-player audio {
+  width: 100%;
+  border-radius: var(--border-radius);
+  outline: none;
+  background: transparent;
+  z-index: 1;
+  position: relative;
+  color-scheme: dark;
+}
+
+/* Controles minimalistas, claros para dark theme */
+.audio-player audio::-webkit-media-controls-panel {
+  background: rgba(28, 28, 28, 0.5);
+  border-radius: var(--border-radius);
+  color: #e0e0e0;
+}
+
+.audio-player audio::-webkit-media-controls-play-button,
+.audio-player audio::-webkit-media-controls-volume-slider,
+.audio-player audio::-webkit-media-controls-current-time-display,
+.audio-player audio::-webkit-media-controls-time-remaining-display {
+  filter: brightness(1.5);
+}
+
+/* Carousel */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* Slightly wider for better visuals */
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s cubic-bezier(.4,1.4,.6,1), box-shadow var(--transition);
+}
+
+.carousel.dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+.carousel-image {
+  display: none;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* Consistent aspect ratio */
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.carousel-image.active {
+  display: block;
+  animation: fade 0.8s ease-in-out; /* Slightly faster animation */
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dots {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dots span {
+  width: 12px;
+  height: 12px;
+  background-color: #555;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.dots span.active {
+  background-color: var(--primary-color);
+}
+
+.message {
+  font-weight: 600;
+  font-size: clamp(1.25rem, 4vw, 1.5rem); /* Responsive font size */
+  margin-bottom: 1.5rem;
+}
+
+.timer {
+  background-color: var(--background-dark);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* Floating emojis */
+#emoji-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.emoji {
+  position: absolute;
+  font-size: clamp(1rem, 3vw, 1.25rem); /* Responsive emoji size */
+  animation: float 10s linear infinite; /* Smoother, longer animation */
+  will-change: transform, opacity; /* Optimize animation performance */
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .music-info > img {
+    width: 100px;
+  }
+
+  .cover {
+    width: 100px; /* Slightly larger for mobile */
+    height: 100px;
+  }
+
+  .audio-player {
+    max-width: 100%; /* Full-width player on mobile */
+  }
+
+  .carousel {
+    max-width: 90%;
+  }
+}

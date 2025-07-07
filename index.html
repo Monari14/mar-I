@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MemoryIIT Clone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Música -->
+    <div class="music-info">
+      <img src="assets/capa.png" alt="Capa do Álbum" class="cover" />
+      <div>
+        <h2>Planos</h2>
+        <p>BK, Luccas Carlos, Arit</p>
+      </div>
+    </div>
+
+    <!-- Player de áudio -->
+    <div class="audio-player">
+      <audio controls>
+        <source src="assets/music.mp3" type="audio/mpeg" />
+        Seu navegador não suporta áudio HTML5.
+      </audio>
+    </div>
+
+    <!-- Carrossel de imagens -->
+    <div class="carousel">
+      <img class="carousel-image" src="assets/img1.jpg" alt="Imagem 1">
+      <img class="carousel-image" src="assets/img2.jpg" alt="Imagem 2">
+      <img class="carousel-image" src="assets/img3.jpg" alt="Imagem 3">
+      <img class="carousel-image" src="assets/img4.jpg" alt="Imagem 4">
+    </div>
+
+    <!-- Pontinhos -->
+    <div class="dots" id="dots"></div>
+
+    <!-- Texto personalizado -->
+    <h3 class="message">texto, texto, texto, texto, texto, texto</h3>
+
+    <!-- Contador de tempo -->
+    <div class="timer" id="timer"></div>
+  </div>
+
+  <!-- Emojis flutuantes -->
+  <div id="emoji-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
