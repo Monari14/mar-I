@@ -1,5 +1,5 @@
 // Timer desde uma data personalizada
-const startDate = new Date("2007-12-12T00:00:00");
+const startDate = new Date("2025-07-12T00:14:25");
 const timerEl = document.getElementById("timer");
 
 function updateTimer() {
